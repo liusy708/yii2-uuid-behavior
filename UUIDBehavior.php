@@ -1,6 +1,6 @@
 <?php
 
-namespace mootensai\behaviors;
+namespace liusy708\behaviors;
 
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
