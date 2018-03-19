@@ -16,7 +16,7 @@ class UUIDBehavior extends Behavior {
      * Default -> id
      * @var type 
      */
-    public $column = 'id';
+    public $column = 'uuid';
 
     /**
      * Override event() 
@@ -33,7 +33,9 @@ class UUIDBehavior extends Behavior {
      * set beforeSave() -> UUID data
      */
     public function beforeSave() {
-        $this->owner->{$this->column} = $this->owner->getDb()->createCommand("SELECT REPLACE(UUID(),'-','')")->queryScalar();
+        if (!isset($this->owner->{$this->column})) {
+            $this->owner->{$this->column} = $this->owner->getDb()->createCommand("SELECT REPLACE(UUID(),'-','')")->queryScalar();
+        }        
     }
 
 }
